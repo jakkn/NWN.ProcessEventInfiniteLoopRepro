@@ -4,3 +4,4 @@ services:
     restart: "no"
     volumes:
       - ${PWD-.}/.nasher/cache/default/:/nwn/home/development
+      - ${PWD-.}/NWN.ProcessEventInfiniteLoopRepro/bin/Debug/Repro:/nwn/run/anvil/Plugins/Repro
