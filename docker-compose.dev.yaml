@@ -2,6 +2,8 @@ version: "3"
 services:
   nwserver:
     restart: "no"
+    environment:
+      ANVIL_RELOAD_ENABLED: "true"
     volumes:
       - ${PWD-.}/.nasher/cache/default/:/nwn/home/development
       - ${PWD-.}/NWN.ProcessEventInfiniteLoopRepro/bin/Debug/Repro:/nwn/run/anvil/Plugins/Repro
