@@ -7,7 +7,7 @@ source "$__scripts_path/nwnx_utils.sh"
 
 PS3="Use this menu to run commands. Choose an option: "
 
-options=("docker down & up" "nss watch" "extract module" "nss all" "pack module" "nwserver restart" "download all plugin nss")
+options=("docker down & up" "nss watch" "extract module" "nss all" "pack module" "nwserver restart" "tail server logs" "download all plugin nss")
 while true; do
   select option in "${options[@]}" Quit; do
     case $REPLY in
@@ -17,7 +17,8 @@ while true; do
       4) ./nwn-build.sh compile; break;;
       5) nasher pack; break;;
       6) docker compose restart nwserver; break;;
-      7) _update_nwnx_nss; break;;
+      7) docker compose logs -f nwserver; break;;
+      8) _update_nwnx_nss; break;;
       $((${#options[@]}+1))) break 2;;
       *) echo "invalid option $REPLY"; break;;
     esac

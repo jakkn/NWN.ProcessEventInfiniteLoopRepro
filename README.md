@@ -1,17 +1,33 @@
-# nwserver-nwnx-template
+# NWN.ProcessEventInfiniteLoopRepro
 
-Template for nwnee projects with nwnx installed, running in Docker containers.
-
-Also supports initializing nwnx_dotnet with Anvil and setting up an Anvil plugin.
-
-Useful to get quickly up and running for proof of concepts, testing features, or reproducing bugs.
+Repro project for a bug in Anvil that throws `System.IndexOutOfRangeException` from `VirtualMachine.cs::ExecuteInScriptContext` _after_ having reloaded services that contain subscriptions to events that are also subscribed to from nss.
 
 ## Getting started
 
-### Init
+### Run
 
-1. Run `./init.sh` to get started with an nwnx version
-1. Run `nasher init` to get started with the project sources
+These are the steps to reproduce the bug:
+
+1. Build and run
+
+```shell
+dotnet build -c Debug
+./run-commands.sh # to start the interactive menu
+```
+
+2. Use option 5 to pack the module
+1. Use option 1 to start the container
+1. Use option 7 to tail the server logs
+1. Log in and sell something to the merchant. This should work fine.
+1. Trigger a reload of dotnet, e.g. by starting a watcher in a separate terminal and saving a file
+
+```shell
+dotnet watch --project NWN.ProcessEventInfiniteLoopRepro/Repro.csproj build -c Debug
+```
+
+7. Watch Anvil reload plugins.
+1. Try to sell something again.
+1. Observe the process crash.
 
 ### Use
 
@@ -23,5 +39,5 @@ A utility script named `./run-commands.sh` has been added to speed up running fr
 
 - `docker` (with `compose`)
 - `nasher`
-- `entr` (to hot compile)
-- `dotnet` if creating an Anvil project
+- `dotnet`
+- `entr` (to hot compile nss)
