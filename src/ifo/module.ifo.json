@@ -33,7 +33,7 @@
   "Mod_OnClientLeav": { "type": "resref", "value": "" },
   "Mod_OnCutsnAbort": { "type": "resref", "value": "" },
   "Mod_OnHeartbeat": { "type": "resref", "value": "" },
-  "Mod_OnModLoad": { "type": "resref", "value": "x2_mod_def_load" },
+  "Mod_OnModLoad": { "type": "resref", "value": "on_mod_load" },
   "Mod_OnModStart": { "type": "resref", "value": "" },
   "Mod_OnNuiEvent": { "type": "resref", "value": "" },
   "Mod_OnPlrChat": { "type": "resref", "value": "" },
